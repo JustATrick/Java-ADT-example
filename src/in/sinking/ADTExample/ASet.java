@@ -1,35 +1,14 @@
 package in.sinking.ADTExample;
 
-import in.sinking.ADTExample.representation.Empty;
-import in.sinking.ADTExample.representation.Pair;
-import in.sinking.ADTExample.representation.RepType;
-
-public class ASet {
-	private RepType rep_;
-	
-	private ASet(final RepType rep) {
-		rep_ = rep;
-	}
-	
-	private static ASet make_empty() {
-		return new ASet(new Empty());
-	}
-	
-	private static ASet make_pair(int first, RepType rest) {
-		return new ASet(new Pair(first, rest));
-	}
-	
-	private static ASet up(RepType rep) {
-		return new ASet(rep);
-	}
+public abstract class ASet {
 	
 	public static ASet empty() {
-		return make_empty();
+		return new Empty();
 	}
 	
 	public static ASet insert(ASet s, int n) {
 		if (!contains(s, n)) {
-			return make_pair(n, s.rep_);
+			return new Pair(n, s);
 		}
 		else {
 			return s;
@@ -37,16 +16,16 @@ public class ASet {
 	}
 		
 	public static boolean contains(ASet s, int n) {
-		if (s.rep_ instanceof Empty) {
+		if (s instanceof Empty) {
 			return false;
 		}
-		else if (s.rep_ instanceof Pair) {
-			final Pair rep = (Pair) s.rep_;
+		else if (s instanceof Pair) {
+			final Pair rep = (Pair) s;
 			if (rep.first == n) {
 				return true;
 			}
 			else {
-				return contains(up(rep.rest), n);
+				return contains(rep.rest, n);
 			}
 		}
 		else {
@@ -55,15 +34,27 @@ public class ASet {
 	}
 	
 	public static ASet union(ASet a, ASet b) {
-		if (a.rep_ instanceof Empty) {
+		if (a instanceof Empty) {
 			return b;
 		}
-		else if (a.rep_ instanceof Pair) {
-			final Pair rep = (Pair) a.rep_;
-			return insert(union(up(rep.rest), b), rep.first);
+		else if (a instanceof Pair) {
+			final Pair rep = (Pair) a;
+			return insert(union(rep.rest, b), rep.first);
 		}
 		else {
 			throw new IllegalStateException("Someone changed my rep without letting me know!");
+		}
+	}
+
+	static private class Empty extends ASet { }
+	
+	static private class Pair extends ASet {
+		public int first;
+		public ASet rest;
+		
+		public Pair(int first, ASet rest) {
+			this.first = first;
+			this.rest = rest;
 		}
 	}
 }
