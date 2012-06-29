@@ -1,7 +1,7 @@
 package in.sinking.ADTExample;
 
-public abstract class CSet {
-	public abstract CSet insert(int n);	
-	public abstract boolean contains(int n);
-	public abstract CSet union(CSet b);
+public interface CSet {
+	public CSet insert(int n);	
+	public boolean contains(int n);
+	public CSet union(CSet b);
 }

@@ -1,7 +1,7 @@
 package in.sinking.ADTExample;
 
 
-public class Empty extends CSet {
+public class Empty implements CSet {
 	@Override
 	public CSet insert(int n) {
 		return new Pair(n, this);

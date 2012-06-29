@@ -1,6 +1,6 @@
 package in.sinking.ADTExample;
 
-public class Pair extends CSet {
+public class Pair implements CSet {
 	private int first;
 	private CSet rest;
 	
