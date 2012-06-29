@@ -1,6 +1,5 @@
 package in.sinking.ADTExample;
 
-import static in.sinking.ADTExample.CSet.empty;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
@@ -61,6 +60,10 @@ public class CSetTest {
 		
 		assertContains(a.union(empty), -1, -2);
 		assertContains(empty.union(a), -1, -2);
+	}
+	
+	private static CSet empty() {
+		return new Empty();
 	}
 	
 	private void assertMissing(final CSet underTest, int... values) {
