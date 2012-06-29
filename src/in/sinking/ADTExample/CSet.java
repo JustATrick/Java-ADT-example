@@ -6,19 +6,16 @@ public abstract class CSet {
 		return new Empty();
 	}
 	
-	public CSet insert(int n) {
-		if (!contains(n)) {
-			return new Pair(n, this);
-		}
-		else {
-			return this;
-		}
-	}
-		
+	public abstract CSet insert(int n);	
 	public abstract boolean contains(int n);
 	public abstract CSet union(CSet b);
 
 	static private class Empty extends CSet {
+		@Override
+		public CSet insert(int n) {
+			return new Pair(n, this);
+		}
+		
 		@Override
 		public boolean contains(int n) {
 			return false;
@@ -37,6 +34,16 @@ public abstract class CSet {
 		public Pair(int first, CSet rest) {
 			this.first = first;
 			this.rest = rest;
+		}
+		
+		@Override
+		public CSet insert(int n) {
+			if (!contains(n)) {
+				return new Pair(n, this);
+			}
+			else {
+				return this;
+			}
 		}
 		
 		@Override
