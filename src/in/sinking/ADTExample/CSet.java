@@ -5,24 +5,14 @@ import in.sinking.ADTExample.representation.Pair;
 import in.sinking.ADTExample.representation.RepType;
 
 public class CSet {
+	// declare representation fields
 	private RepType rep_;
 	
+	// no public constructor
 	private CSet(final RepType rep) {
 		rep_ = rep;
 	}
-	
-	private static CSet make_empty() {
-		return new CSet(new Empty());
-	}
-	
-	private static CSet make_pair(int first, RepType rest) {
-		return new CSet(new Pair(first, rest));
-	}
-	
-	private static CSet up(RepType rep) {
-		return new CSet(rep);
-	}
-	
+
 	public static CSet empty() {
 		return make_empty();
 	}
@@ -65,5 +55,17 @@ public class CSet {
 		else {
 			throw new IllegalStateException("Someone changed my rep without letting me know!");
 		}
+	}
+	
+	private static CSet make_empty() {
+		return new CSet(new Empty());
+	}
+	
+	private static CSet make_pair(int first, RepType rest) {
+		return new CSet(new Pair(first, rest));
+	}
+	
+	private static CSet up(RepType rep) {
+		return new CSet(rep);
 	}
 }

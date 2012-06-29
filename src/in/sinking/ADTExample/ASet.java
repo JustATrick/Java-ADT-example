@@ -5,22 +5,12 @@ import in.sinking.ADTExample.representation.Pair;
 import in.sinking.ADTExample.representation.RepType;
 
 public class ASet {
+	// declare representation fields
 	private RepType rep_;
 	
+	// no public constructor
 	private ASet(final RepType rep) {
 		rep_ = rep;
-	}
-	
-	private static ASet make_empty() {
-		return new ASet(new Empty());
-	}
-	
-	private static ASet make_pair(int first, RepType rest) {
-		return new ASet(new Pair(first, rest));
-	}
-	
-	private static ASet up(RepType rep) {
-		return new ASet(rep);
 	}
 	
 	public static ASet empty() {
@@ -65,5 +55,17 @@ public class ASet {
 		else {
 			throw new IllegalStateException("Someone changed my rep without letting me know!");
 		}
+	}
+	
+	private static ASet make_empty() {
+		return new ASet(new Empty());
+	}
+	
+	private static ASet make_pair(int first, RepType rest) {
+		return new ASet(new Pair(first, rest));
+	}
+	
+	private static ASet up(RepType rep) {
+		return new ASet(rep);
 	}
 }
