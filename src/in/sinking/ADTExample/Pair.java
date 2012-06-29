@@ -1,6 +1,6 @@
-package in.sinking.ADTExample.representation;
+package in.sinking.ADTExample;
 
-public class Pair extends RepType {
+class Pair extends RepType {
 	public int first;
 	public RepType rest;
 	

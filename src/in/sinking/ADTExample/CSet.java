@@ -1,8 +1,5 @@
 package in.sinking.ADTExample;
 
-import in.sinking.ADTExample.representation.Empty;
-import in.sinking.ADTExample.representation.Pair;
-import in.sinking.ADTExample.representation.RepType;
 
 public class CSet {
 	// declare representation fields
